@@ -6,7 +6,6 @@ from botocore.exceptions import ClientError
 from django.conf import settings
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
-from django.utils.six import iteritems
 
 from warrant import Cognito
 from .utils import cognito_to_dict
@@ -37,7 +36,7 @@ class CognitoUser(Cognito):
         else:
             try:
                 user = CognitoUser.user_class.objects.get(username=username)
-                for k, v in iteritems(user_attrs):
+                for k, v in user_attrs.iteritems():
                     setattr(user, k, v)
                 user.save()
             except CognitoUser.user_class.DoesNotExist:

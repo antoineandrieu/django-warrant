@@ -8,8 +8,8 @@ from .views import ProfileView,UpdateProfileView,MySubsriptions,\
 app_name = 'dw'
 
 urlpatterns = (
-    re_path(r'^login/$', auth_views.login, {'template_name': 'warrant/login.html'}, name='login'),
-    re_path(r'^logout/$', LogoutView.as_view(), {'template_name': 'warrant/logout.html'}, name='logout'),
+    re_path(r'^login/$', auth_views.LoginView.as_view(template_name='warrant/login.html'), name='login'),
+    re_path(r'^logout/$', LogoutView.as_view(template_name='warrant/logout.html'), name='logout'),
     re_path(r'^profile/$', ProfileView.as_view(),name='profile'),
     re_path(r'^profile/update/$', UpdateProfileView.as_view(),name='update-profile'),
     re_path(r'^profile/subscriptions/$', MySubsriptions.as_view(),name='subscriptions'),
